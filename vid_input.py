@@ -18,6 +18,8 @@ chunk_size_secs = chunk_size*60
 chunk_per_hour = 60/chunk_size
 repeat_code = int(chunk_per_hour*hours)
 print("%s hours recording starting now" % hours)
+
+#while (dt.datetime.now() - start).seconds < 300:
  
 for i in range(repeat_code):
     def get_file_name():
