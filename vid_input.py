@@ -19,19 +19,29 @@ chunk_per_hour = 60/chunk_size
 repeat_code = int(chunk_per_hour*hours)
 print("%s hours recording starting now" % hours)
 
-#while (dt.datetime.now() - start).seconds < 300:
- 
-for i in range(repeat_code):
-    def get_file_name():
-      return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
+
+#start = datetime.datetime.now()
+#while (datetime.datetime.now() - start).seconds < 300:
+#    camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#    camera.wait_recording(0.2)
+#camera.stop_recording()
+start = datetime.datetime.now()
+
+
+def get_file_name():
+ return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     filename = "%s%s" % (save_dir, get_file_name()) 
     time.sleep(1)
     print("Starting to record a %s minute chunk at %s" % (chunk_size, time_now))
     camera.start_preview()
+    camera.start_recording(filename)
     #camera.annotate_background = camera.Color('black')
+    
+while (datetime.datetime.now() - start).seconds < chunk_size_secs: 
     camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    camera.start_recording(filename) 
+    camera.wait_recording(0.2)  
+     
     time.sleep(chunk_size_secs)
     camera.stop_recording()
     camera.stop_preview()
