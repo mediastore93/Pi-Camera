@@ -30,10 +30,6 @@ for i in range(repeat_code):
     #camera.annotate_background = camera.Color('black')
     camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     camera.start_recording(filename) 
-    start = datetime.datetime.now()
-    while (datetime.datetime.now() - start).seconds < 30:
-        camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        camera.wait_recording(0.2)
     time.sleep(chunk_size_secs)
     camera.stop_recording()
     camera.stop_preview()
