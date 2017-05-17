@@ -27,7 +27,6 @@ for i in range(repeat_code):
     time.sleep(1)
     print("Starting to record a %s minute chunk at %s" % (chunk_size, time_now))
     camera.start_preview()
-    #camera.annotate_background = camera.Color('black')
     camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     camera.start_recording(filename) 
     time.sleep(chunk_size_secs)
