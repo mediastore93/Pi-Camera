@@ -10,6 +10,7 @@ def get_file_name():  # new
 
 sensor = 17
 
+
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor, GPIO.IN, GPIO.PUD_DOWN)
 
@@ -18,6 +19,7 @@ current_state = False
 
 cam = picamera.PiCamera()
 cam.resolution = (960, 540)
+cam.rotation = 180
 
 print("Starting PIR")
 time.sleep(1)
