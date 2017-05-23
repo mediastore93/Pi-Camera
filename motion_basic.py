@@ -3,7 +3,7 @@ from picamera import PiCamera
 from datetime import datetime
 
 camera = PiCamera()
-pir = MotionSensor(7)
+pir = MotionSensor(17)
 #camera.rotation = 180
 camera.framerate = 30
 camera.resolution = (480, 270)
