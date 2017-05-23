@@ -8,7 +8,7 @@ save_directory = "/home/pi/vid/"
 def get_file_name():  # new
     return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
 
-sensor = 7
+sensor = 17
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(sensor, GPIO.IN, GPIO.PUD_DOWN)
