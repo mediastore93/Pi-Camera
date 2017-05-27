@@ -44,4 +44,4 @@ while True:
             cam.start_recording(fileName)
         else:
             cam.stop_preview()
-            cam.stop_recording()  
+            cam.stop_recording()
