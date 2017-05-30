@@ -57,19 +57,19 @@ try:
     # Read PIR state
     Current_State = GPIO.input(GPIO_PIR)
     if Current_State==1 and Previous_State==0:
-        # PIR is triggered
-        start_time=time.time()
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print "  Motion detected @ %s !" % time_now
-        video_rec()
+    # PIR is triggered
+    start_time=time.time()
+    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print "  Motion detected @ %s !" % time_now
+    video_rec()
 
-        # Record previous state
+    # Record previous state
 	Previous_State=1
-        elif Current_State==0 and Previous_State==1:
-    	# PIR has returned to ready state
-    	stop_time=time.time()
-    	print "  Ready ",
-    	Previous_State=0
+    elif Current_State==0 and Previous_State==1:
+	# PIR has returned to ready state
+	stop_time=time.time()
+	print "  Ready ",
+	Previous_State=0
 
 except KeyboardInterrupt:
   print "  Quit"
