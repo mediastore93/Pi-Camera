@@ -20,7 +20,7 @@ GPIO_PIR = 17
 GPIO.setmode(GPIO.BCM)
 
 #Video
-def video_5min():
+def video_rec():
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     start = datetime.datetime.now()
     def get_file_name():
@@ -29,7 +29,7 @@ def video_5min():
     print("*** OG is out, starting to record at %s ***" % (time_now))
     camera.start_preview()
     camera.start_recording(filename)
-    while (datetime.datetime.now() - start).seconds < 300:
+    while (datetime.datetime.now() - start).seconds < 60:
         camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         camera.wait_recording(0.2)
     camera.stop_recording()
@@ -61,7 +61,7 @@ try:
         start_time=time.time()
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
-        video_5min()
+        video_rec()
 
         # Record previous state
 	Previous_State=1
