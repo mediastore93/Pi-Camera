@@ -10,12 +10,13 @@ camera.rotation = 180
 save_dir = "/home/pi/vid/"
 #time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'
 
-def get_file_name():
-	return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
-filename = "%s%s" % (save_dir, get_file_name()) 
-print('taking picture')
 camera.start_preview()
 sleep(2)
+def get_file_name():
+	return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
+time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print("Taking picture at %s" % (time_now))
+filename = "%s%s" % (save_dir, get_file_name())
 camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-camera.capture('filename.jpg')
+camera.capture('filename')
 camera.stop_preview()
