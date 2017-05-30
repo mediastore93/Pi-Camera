@@ -4,7 +4,7 @@ import time
 import datetime
 
 camera = PiCamera()
-camera.resolution = (1920, 1080)
+camera.resolution = (2592, 1944)
 camera.rotation = 180
 #camera.led = False
 save_dir = "/home/pi/vid/"
