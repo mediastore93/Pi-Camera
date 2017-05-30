@@ -29,8 +29,7 @@ def video_5min():
     print("*** OG is out, starting to record at %s ***" % (time_now))
     camera.start_preview()
     camera.start_recording(filename)
-    #while (datetime.datetime.now() - start).seconds < 300:
-    while True:
+    while (datetime.datetime.now() - start).seconds < 300:
         camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         camera.wait_recording(0.2)
     camera.stop_recording()
