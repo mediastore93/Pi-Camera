@@ -26,7 +26,7 @@ def video_rec():
     def get_file_name():
         return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
     filename = "%s%s" % (save_dir, get_file_name())
-    print("*** OG is out, starting to record at %s ***" % (time_now))
+    #print("*** OG is out, starting to record at %s ***" % (time_now))
     camera.start_preview()
     camera.start_recording(filename)
     while (datetime.datetime.now() - start).seconds < 60:
@@ -68,7 +68,7 @@ try:
     elif Current_State==0 and Previous_State==1:
     	# PIR has returned to ready state
     	stop_time=time.time()
-    	print "  Ready ",
+    	print "  Ready "
     	Previous_State=0
 
 except KeyboardInterrupt:
