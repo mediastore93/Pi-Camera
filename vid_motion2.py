@@ -39,22 +39,23 @@ def video_rec():
 
 #TAKES 2 STILL PICTURES -------------------------------------------------
 def still():
-    camera.resolution = (2592, 1944)
-    camera.rotation = 180
-    #camera.led = False
-    camera.start_preview()
-    time.sleep(0.5)
-    def get_file_name():
-    	return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
-    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print("Taking picture at %s" % (time_now))
-    filename = "%s%s" % (save_dir, get_file_name())
-    camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    camera.capture(filename)
-    time.sleep(1)
-    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    camera.capture(filename)
-    camera.stop_preview()
+#	camera.exposure = night
+	camera.resolution = (2592, 1944)
+	camera.rotation = 180
+	camera.led = False
+	camera.start_preview()
+	time.sleep(2)
+	def get_file_name():
+		return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
+	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+	print("Taking picture at %s" % (time_now))
+	filename = "%s%s" % (save_dir, get_file_name())
+	camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+	camera.capture(filename)
+	time.sleep(1)
+	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+	camera.capture(filename)
+	camera.stop_preview()
 
 #PIR ---------------------------------------------------
 print("PIR Module Holding Time Test (CTRL-C to exit)")
@@ -102,3 +103,4 @@ except KeyboardInterrupt:
   print "  Quit"
   # Reset GPIO settings
   GPIO.cleanup()
+
