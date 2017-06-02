@@ -79,13 +79,14 @@ try:
     timestamp = datetime.datetime.now().time()
     start = datetime.time(6, 31)
     end = datetime.time(19, 0)
+    midnight = datetime.time(0, 1)
     if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
     # PIR is triggered
         start_time=time.time()
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
         video_rec()
-    elif (Current_State==1 and Previous_State==0) and (timestamp > end):
+    elif (Current_State==1 and Previous_State==0) and ((end < timestamp < midnight) or (midnight < timestamp < start)):
     # PIR is triggered
         start_time=time.time()
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -103,4 +104,3 @@ except KeyboardInterrupt:
   print "  Quit"
   # Reset GPIO settings
   GPIO.cleanup()
-
