@@ -79,19 +79,19 @@ try:
     timestamp = datetime.datetime.now().time()
     start = datetime.time(6, 31)
     end = datetime.time(19, 0)
-    midnight = datetime.time(0, 1)
+    midnight = datetime.time(23, 58)
     if (Current_State==1 and Previous_State==0) and (start < timestamp < end):
     # PIR is triggered
         #start_time=time.time()
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
         video_rec()
-    elif (Current_State==1 and Previous_State==0) and (end < timestamp < midnight):
+    elif (Current_State==1 and Previous_State==0) and (end < timestamp =< midnight):
     # PIR is triggered
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
         still()
-    elif (Current_State==1 and Previous_State==0) and (midnight < timestamp < start):
+    elif (Current_State==1 and Previous_State==0) and (timestamp < start):
     # PIR is triggered
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
