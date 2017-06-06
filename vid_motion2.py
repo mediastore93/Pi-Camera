@@ -86,7 +86,7 @@ try:
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
         video_rec()
-    elif (Current_State==1 and Previous_State==0) and (end < timestamp =< midnight):
+    elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
     # PIR is triggered
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print "  Motion detected @ %s !" % time_now
