@@ -39,7 +39,7 @@ def video_rec():
 
 #TAKES 2 STILL PICTURES -------------------------------------------------
 def still():
-#	camera.exposure = night
+	camera.exposure = night
 	camera.resolution = (2592, 1944)
 	camera.rotation = 180
 	camera.led = False
