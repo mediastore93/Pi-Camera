@@ -12,7 +12,7 @@ camera = PiCamera()
 camera.rotation = 180
 camera.led = False
 camera.framerate = 25
-camera.resolution = (960, 540)
+
 save_dir = "/home/pi/vid/"
 
 #motion settings:
@@ -21,12 +21,12 @@ GPIO.setmode(GPIO.BCM)
 
 #VIDEO -------------------------------------------------
 def video_rec():
+    camera.resolution = (960, 540)
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     start = datetime.datetime.now()
     def get_file_name():
         return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
     filename = "%s%s" % (save_dir, get_file_name())
-    #print("*** OG is out, starting to record at %s ***" % (time_now))
     camera.start_preview()
     camera.start_recording(filename)
     while (datetime.datetime.now() - start).seconds < 60:
