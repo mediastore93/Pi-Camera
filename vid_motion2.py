@@ -45,7 +45,7 @@ def still():
 	camera.rotation = 180
 	camera.led = False
 	camera.start_preview()
-	time.sleep(2)
+	time.sleep(1)
 	def get_file_name():
 		return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
 	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
