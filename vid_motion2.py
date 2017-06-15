@@ -21,7 +21,8 @@ GPIO.setmode(GPIO.BCM)
 
 #VIDEO -------------------------------------------------
 def video_rec():
-    camera.resolution = (960, 540)
+    #camera.resolution = (960, 540)
+    camera.resolution = (1296, 972) 
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     start = datetime.datetime.now()
     def get_file_name():
