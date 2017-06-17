@@ -36,7 +36,7 @@ def video_rec():
     camera.stop_recording()
     camera.stop_preview()
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    print("Finished recording @ %s" % (time_now))
+    #print("Finished recording @ %s" % (time_now))
 
 #TAKES 2 STILL PICTURES -------------------------------------------------
 def still():
