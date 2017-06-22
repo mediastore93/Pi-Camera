@@ -5,10 +5,13 @@ import time
 import datetime
 from picamera import PiCamera
 import RPi.GPIO as GPIO
+import nmap
 #import os
 
 #camera settings:
 camera = PiCamera()
+nm = nmap.PortScanner()
+
 camera.rotation = 180
 camera.led = False
 camera.framerate = 25
