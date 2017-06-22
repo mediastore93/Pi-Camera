@@ -115,8 +115,8 @@ def sweep():
         nm.scan(hosts='10.0.0.16', arguments='-sn')
         print('Scan started at %s ') % time_now
         for host in nm.all_hosts():
-                print('Host : %s (%s)' % (host, nm[host].hostname()))
-                print('State : %s' % nm[host].state())
+                #print('Host : %s (%s)' % (host, nm[host].hostname()))
+                #print('State : %s' % nm[host].state())
                 if nm[host].state()=='up':
                         count+=1
                         #print('OG is in, counted up by 1')
