@@ -69,15 +69,15 @@ def pir():
     Current_State  = 0
     Previous_State = 0
 
-    try:
 
-      print "Waiting for PIR to settle ..."
-      # Loop until PIR output is 0
-      while GPIO.input(GPIO_PIR)==1:
+
+    print "Waiting for PIR to settle ..."
+    # Loop until PIR output is 0
+    while GPIO.input(GPIO_PIR)==1:
         Current_State  = 0
-      print "  Ready"
-      # Loop until users quits with CTRL-C
-      while True :
+    print "  Ready"
+    # Loop until users quits with CTRL-C
+    while True :
         # Read PIR state
         Current_State = GPIO.input(GPIO_PIR)
         timestamp = datetime.datetime.now().time()
@@ -85,8 +85,7 @@ def pir():
         end = datetime.time(19, 0)
         midnight = datetime.time(23, 59)
         if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
-        # PIR is triggered
-            #start_time=time.time()
+        # PIR is triggered    
             time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print "  Motion detected @ %s !" % time_now
             video_rec()
@@ -100,19 +99,13 @@ def pir():
             time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print "  Motion detected @ %s !" % time_now
             still()
-
         # Record previous state
     	Previous_State=1
         elif (Current_State==0 and Previous_State==1):
-        	# PIR has returned to ready state
-        	stop_time=time.time()
-        	print "  Ready "
-        	Previous_State=0
-
-    except KeyboardInterrupt:
-      print "  Quit"
-      # Reset GPIO settings
-      GPIO.cleanup()
+            # PIR has returned to ready state
+            stop_time=time.time()
+            print "  Ready "
+            Previous_State=0
 
   #NMAP SCANNER:
 
