@@ -127,3 +127,7 @@ def sweep():
         else:
                 print('OG is out')
                 pir()
+
+for i in range(36): #loop for 1 hour
+        sweep()
+        time.sleep(1)
