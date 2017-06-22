@@ -85,7 +85,7 @@ def pir():
         end = datetime.time(19, 0)
         midnight = datetime.time(23, 59)
         if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
-        # PIR is triggered    
+        # PIR is triggered
             time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             print "  Motion detected @ %s !" % time_now
             video_rec()
