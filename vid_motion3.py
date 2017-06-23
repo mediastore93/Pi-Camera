@@ -108,7 +108,9 @@ def pir():
         Previous_State=0
 
 #NMAP SCANNER:
-def sweep():
+
+#def sweep():
+while True:
         count=0
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -127,6 +129,6 @@ def sweep():
                 print('OG is out')
                 pir()
 
-for i in range(36): #loop for 1 hour
-        sweep()
-        time.sleep(1)
+#for i in range(36): #loop for 1 hour
+#        sweep()
+#        time.sleep(1)
