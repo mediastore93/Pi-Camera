@@ -104,7 +104,7 @@ def pir():
             still()
         # Record previous state
         Previous_State=1
-        if (Current_State==0 and Previous_State==1):
+        else (Current_State==0 and Previous_State==1):
             # PIR has returned to ready state
             stop_time=time.time()
             print "  Ready "
