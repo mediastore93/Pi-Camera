@@ -62,54 +62,6 @@ def still():
 	camera.capture(filename)
 	camera.stop_preview()
 
-#PIR ---------------------------------------------------
-def pir():
-
-    try:
-
-      print "Waiting for PIR to settle ..."
-      # Loop until PIR output is 0
-      while GPIO.input(GPIO_PIR)==1:
-        Current_State  = 0
-      print "  Ready"
-      # Loop until users quits with CTRL-C
-      while True :
-        # Read PIR state
-        Current_State = GPIO.input(GPIO_PIR)
-        timestamp = datetime.datetime.now().time()
-        start = datetime.time(6, 31)
-        end = datetime.time(20, 0)
-        midnight = datetime.time(23, 59)
-        if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
-        # PIR is triggered
-            #start_time=time.time()
-            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            print "  Motion detected @ %s !" % time_now
-            video_rec()
-        elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
-        # PIR is triggered
-            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            print "  Motion detected @ %s !" % time_now
-            still()
-        elif (Current_State==1 and Previous_State==0) and (timestamp < start):
-        # PIR is triggered
-            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-            print "  Motion detected @ %s !" % time_now
-            still()
-
-        # Record previous state
-    	Previous_State=1
-        elif Current_State==0 and Previous_State==1:
-        	# PIR has returned to ready state
-        	stop_time=time.time()
-        	print "  Ready "
-        	Previous_State=0
-
-    except KeyboardInterrupt:
-      print "  Quit"
-      # Reset GPIO settings
-      GPIO.cleanup()
-
 #NMAP SCANNER:
 
 #def sweep():
@@ -130,7 +82,51 @@ while True:
                 time.sleep(120)
         else:
                 print('OG is out')
-                pir()
+
+                try:
+
+                  print "Waiting for PIR to settle ..."
+                  # Loop until PIR output is 0
+                  while GPIO.input(GPIO_PIR)==1:
+                    Current_State  = 0
+                  print "  Ready"
+                  # Loop until users quits with CTRL-C
+                  while True :
+                    # Read PIR state
+                    Current_State = GPIO.input(GPIO_PIR)
+                    timestamp = datetime.datetime.now().time()
+                    start = datetime.time(6, 31)
+                    end = datetime.time(20, 0)
+                    midnight = datetime.time(23, 59)
+                    if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
+                    # PIR is triggered
+                        #start_time=time.time()
+                        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                        print "  Motion detected @ %s !" % time_now
+                        video_rec()
+                    elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
+                    # PIR is triggered
+                        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                        print "  Motion detected @ %s !" % time_now
+                        still()
+                    elif (Current_State==1 and Previous_State==0) and (timestamp < start):
+                    # PIR is triggered
+                        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                        print "  Motion detected @ %s !" % time_now
+                        still()
+
+                    # Record previous state
+                	Previous_State=1
+                    elif Current_State==0 and Previous_State==1:
+                    	# PIR has returned to ready state
+                    	stop_time=time.time()
+                    	print "  Ready "
+                    	Previous_State=0
+
+                except KeyboardInterrupt:
+                  print "  Quit"
+                  # Reset GPIO settings
+                  GPIO.cleanup()
 
 #for i in range(36): #loop for 1 hour
 #        sweep()
