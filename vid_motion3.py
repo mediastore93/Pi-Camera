@@ -80,13 +80,10 @@ while True:
                 time.sleep(120)
         else:
                 print('OG is out')
-
-#motion settings:
-GPIO_PIR = 17
-GPIO.setmode(GPIO.BCM)
-
                 try:
-
+                #motion settings:
+                GPIO_PIR = 17
+                GPIO.setmode(GPIO.BCM)
                   print "Waiting for PIR to settle ..."
                   # Loop until PIR output is 0
                   while GPIO.input(GPIO_PIR)==1:
