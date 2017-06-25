@@ -18,9 +18,6 @@ camera.framerate = 25
 
 save_dir = "/home/pi/vid/"
 
-#motion settings:
-GPIO_PIR = 17
-GPIO.setmode(GPIO.BCM)
 
 #VIDEO -------------------------------------------------
 def video_rec():
@@ -66,6 +63,7 @@ def still():
 
 #def sweep():
 while True:
+
         count=0
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -82,6 +80,10 @@ while True:
                 time.sleep(120)
         else:
                 print('OG is out')
+
+#motion settings:
+GPIO_PIR = 17
+GPIO.setmode(GPIO.BCM)
 
                 try:
 
