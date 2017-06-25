@@ -65,47 +65,50 @@ def still():
 #PIR ---------------------------------------------------
 def pir():
 
-    print("PIR has been activated (CTRL-C to exit)")
-    # Set pin as input
-    GPIO.setup(GPIO_PIR,GPIO.IN)
+    t_end = time.time() + 60
+    while time.time() < t_end:
 
-    Current_State  = 0
-    Previous_State = 0
+        print("PIR has been activated (CTRL-C to exit)")
+        # Set pin as input
+        GPIO.setup(GPIO_PIR,GPIO.IN)
 
-    print "Waiting for PIR to settle ..."
-    # Loop until PIR output is 0
-    while GPIO.input(GPIO_PIR)==1:
         Current_State  = 0
-    print "  Ready"
+        Previous_State = 0
 
-    # Read PIR state
-    Current_State = GPIO.input(GPIO_PIR)
-    timestamp = datetime.datetime.now().time()
-    start = datetime.time(6, 31)
-    end = datetime.time(19, 0)
-    midnight = datetime.time(23, 59)
-    if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
-    # PIR is triggered
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print "  Motion detected @ %s !" % time_now
-        video_rec()
-    elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
-    # PIR is triggered
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print "  Motion detected @ %s !" % time_now
-        still()
-    elif (Current_State==1 and Previous_State==0) and (timestamp < start):
-    # PIR is triggered
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print "  Motion detected @ %s !" % time_now
-        still()
-    # Record previous state
-    Previous_State=1
-    if (Current_State==0 and Previous_State==1):
-        # PIR has returned to ready state
-        stop_time=time.time()
-        print "  Ready "
-        Previous_State=0
+        print "Waiting for PIR to settle ..."
+        # Loop until PIR output is 0
+        while GPIO.input(GPIO_PIR)==1:
+            Current_State  = 0
+        print "  Ready"
+
+        # Read PIR state
+        Current_State = GPIO.input(GPIO_PIR)
+        timestamp = datetime.datetime.now().time()
+        start = datetime.time(6, 31)
+        end = datetime.time(20, 0)
+        midnight = datetime.time(23, 59)
+        if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
+        # PIR is triggered
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print "  Motion detected @ %s !" % time_now
+            video_rec()
+        elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
+        # PIR is triggered
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print "  Motion detected @ %s !" % time_now
+            still()
+        elif (Current_State==1 and Previous_State==0) and (timestamp < start):
+        # PIR is triggered
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print "  Motion detected @ %s !" % time_now
+            still()
+        # Record previous state
+        Previous_State=1
+        if (Current_State==0 and Previous_State==1):
+            # PIR has returned to ready state
+            stop_time=time.time()
+            print "  Ready "
+            Previous_State=0
 
 #NMAP SCANNER:
 
