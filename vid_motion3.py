@@ -96,9 +96,9 @@ while True:
                     Current_State  = 0
                   print "  At start, Ready"
                   # Loop until users quits with CTRL-C
-                  time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                  t_end = time_now + 60
-                  while time_now < t_end :
+                  t_end = time.time() + 60
+
+                  while time.time() < t_end :
                     # Read PIR state
                     Current_State = GPIO.input(GPIO_PIR)
                     timestamp = datetime.datetime.now().time()
