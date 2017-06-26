@@ -60,7 +60,6 @@ def still():
 	camera.stop_preview()
 
 #NMAP SCANNER:
-
 #def sweep():
 while True:
         #motion settings:
@@ -76,8 +75,8 @@ while True:
                         count+=1
                         #print('OG is in, counted up by 1')
         if count > 0:
-                print('Count is %s, OG is in. Scanning again in 2 minutes' % count)
-                time.sleep(60)
+                print('Count is %s, OG is in. Scanning again in 3 minutes' % count)
+                time.sleep(180)
         else:
                 print('OG is out')
                 time.sleep(1)
@@ -89,6 +88,7 @@ while True:
 
                 Current_State  = 0
                 Previous_State = 0
+
                 try:
                   print "Waiting for PIR to settle ..."
                   # Loop until PIR output is 0
