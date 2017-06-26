@@ -67,7 +67,7 @@ while True:
         count=0
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        nm.scan(hosts='10.0.0.21', arguments='-sn')
+        nm.scan(hosts='10.0.0.16', arguments='-sn')
         print('Scan started at %s ') % time_now
         for host in nm.all_hosts():
                 #print('Host : %s (%s)' % (host, nm[host].hostname()))
@@ -96,14 +96,14 @@ while True:
                     Current_State  = 0
                   print "  At start, Ready"
                   # Loop until users quits with CTRL-C
-                  t_end = time.time() + 60
+                  t_end = time.time() + 300
 
                   while time.time() < t_end :
                     # Read PIR state
                     Current_State = GPIO.input(GPIO_PIR)
                     timestamp = datetime.datetime.now().time()
                     start = datetime.time(6, 31)
-                    end = datetime.time(20, 0)
+                    end = datetime.time(20, 30)
                     midnight = datetime.time(23, 59)
                     if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
                     # PIR is triggered
@@ -121,7 +121,6 @@ while True:
                         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                         print "  Motion detected @ %s !" % time_now
                         still()
-
                     # Record previous state
                 	Previous_State=1
                     elif Current_State==0 and Previous_State==1:
