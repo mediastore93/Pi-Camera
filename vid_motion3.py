@@ -64,8 +64,6 @@ def still():
 #def sweep():
 while True:
         #motion settings:
-        GPIO_PIR = 17
-        GPIO.setmode(GPIO.BCM)
         count=0
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -82,6 +80,15 @@ while True:
                 time.sleep(60)
         else:
                 print('OG is out')
+                time.sleep(1)
+                print("PIR Module Holding Time Test (CTRL-C to exit)")
+                # Set pin as input
+                GPIO_PIR = 17
+                GPIO.setmode(GPIO.BCM)
+                GPIO.setup(GPIO_PIR,GPIO.IN)
+
+                Current_State  = 0
+                Previous_State = 0
                 try:
                   print "Waiting for PIR to settle ..."
                   # Loop until PIR output is 0
