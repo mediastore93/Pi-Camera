@@ -67,7 +67,7 @@ while True:
         count=0
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        nm.scan(hosts='10.0.0.16', arguments='-sn')
+        nm.scan(hosts='10.0.0.21', arguments='-sn')
         print('Scan started at %s ') % time_now
         for host in nm.all_hosts():
                 #print('Host : %s (%s)' % (host, nm[host].hostname()))
