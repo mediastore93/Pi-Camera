@@ -94,9 +94,11 @@ while True:
                   # Loop until PIR output is 0
                   while GPIO.input(GPIO_PIR)==1:
                     Current_State  = 0
-                  print "  Ready"
+                  print "  At start, Ready"
                   # Loop until users quits with CTRL-C
-                  while True :
+                  time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                  t_end = time_now + 60
+                  while time_now < t_end :
                     # Read PIR state
                     Current_State = GPIO.input(GPIO_PIR)
                     timestamp = datetime.datetime.now().time()
@@ -125,7 +127,7 @@ while True:
                     elif Current_State==0 and Previous_State==1:
                     	# PIR has returned to ready state
                     	stop_time=time.time()
-                    	print "  Ready "
+                    	print "  At the end, Ready "
                     	Previous_State=0
 
                 except KeyboardInterrupt:
