@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#python2
+# python3
 
 import time
 import datetime
@@ -67,7 +67,7 @@ while True:
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         nm.scan(hosts='10.0.0.16', arguments='-sn')
-        print('Scan started at %s ') % time_now
+        print(('Scan started at %s ') % time_now)
         for host in nm.all_hosts():
                 #print('Host : %s (%s)' % (host, nm[host].hostname()))
                 #print('State : %s' % nm[host].state())
@@ -90,11 +90,11 @@ while True:
                 Previous_State = 0
 
                 try:
-                  print "Waiting for PIR to settle ..."
+                  print("Waiting for PIR to settle ...")
                   # Loop until PIR output is 0
                   while GPIO.input(GPIO_PIR)==1:
                     Current_State  = 0
-                  print "  At start, Ready"
+                  print("  At start, Ready")
                   # Loop until users quits with CTRL-C
                   t_end = time.time() + 300
 
@@ -109,31 +109,32 @@ while True:
                     # PIR is triggered
                         #start_time=time.time()
                         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                        print "  Motion detected @ %s !" % time_now
+                        print("  Motion detected @ %s !" % time_now)
                         video_rec()
                     elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
                     # PIR is triggered
                         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                        print "  Motion detected @ %s !" % time_now
+                        print("  Motion detected @ %s !" % time_now)
                         still()
                     elif (Current_State==1 and Previous_State==0) and (timestamp < start):
                     # PIR is triggered
                         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                        print "  Motion detected @ %s !" % time_now
+                        print("  Motion detected @ %s !" % time_now)
                         still()
                     # Record previous state
-                	Previous_State=1
+                        Previous_State=1
                     elif Current_State==0 and Previous_State==1:
                     	# PIR has returned to ready state
                     	stop_time=time.time()
-                    	print "  At the end, Ready "
+                    	print("  At the end, Ready ")
                     	Previous_State=0
 
                 except KeyboardInterrupt:
-                  print "  Quit"
+                  print("  Quit")
                   # Reset GPIO settings
                   GPIO.cleanup()
 
 #for i in range(36): #loop for 1 hour
 #        sweep()
 #        time.sleep(1)
+
