@@ -75,8 +75,8 @@ while True:
                         count+=1
                         #print('OG is in, counted up by 1')
         if count > 0:
-                print('Count is %s, OG is in. Scanning again in 3 minutes' % count)
-                time.sleep(180)
+                print('Count is %s, OG is in. Scanning again in 5 minutes' % count)
+                time.sleep(300)
         else:
                 print('OG is out')
                 time.sleep(1)
@@ -102,7 +102,7 @@ while True:
                     # Read PIR state
                     Current_State = GPIO.input(GPIO_PIR)
                     timestamp = datetime.datetime.now().time()
-                    start = datetime.time(6, 31)
+                    start = datetime.time(6, 0)
                     end = datetime.time(20, 30)
                     midnight = datetime.time(23, 59)
                     if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
@@ -137,4 +137,3 @@ while True:
 #for i in range(36): #loop for 1 hour
 #        sweep()
 #        time.sleep(1)
-
