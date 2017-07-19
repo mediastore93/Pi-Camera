@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# python3
+#python 3
 
 import time
 import datetime
@@ -75,12 +75,12 @@ while True:
                         count+=1
                         #print('OG is in, counted up by 1')
         if count > 0:
-                print('Count is %s, OG is in. Scanning again in 5 minutes' % count)
+                print('OG is in. Scanning again in 5 minutes')
                 time.sleep(300)
         else:
                 print('OG is out')
                 time.sleep(1)
-                print("PIR Module Holding Time Test (CTRL-C to exit)")
+                #print("PIR Module Holding Time Test (CTRL-C to exit)")
                 # Set pin as input
                 GPIO_PIR = 17
                 GPIO.setmode(GPIO.BCM)
@@ -90,11 +90,11 @@ while True:
                 Previous_State = 0
 
                 try:
-                  print("Waiting for PIR to settle ...")
+                  #print("Waiting for PIR to settle ...")
                   # Loop until PIR output is 0
                   while GPIO.input(GPIO_PIR)==1:
                     Current_State  = 0
-                  print("  At start, Ready")
+                  #print("PIR Active")
                   # Loop until users quits with CTRL-C
                   t_end = time.time() + 300
 
@@ -102,7 +102,7 @@ while True:
                     # Read PIR state
                     Current_State = GPIO.input(GPIO_PIR)
                     timestamp = datetime.datetime.now().time()
-                    start = datetime.time(6, 0)
+                    start = datetime.time(6, 31)
                     end = datetime.time(20, 30)
                     midnight = datetime.time(23, 59)
                     if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
@@ -137,3 +137,4 @@ while True:
 #for i in range(36): #loop for 1 hour
 #        sweep()
 #        time.sleep(1)
+
