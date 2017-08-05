@@ -11,6 +11,8 @@ camera.resolution = (1296, 972)
 save_dir = "/home/pi/vid/"
 
 while True:
+    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("PIR started @ %s" % (time_now))
     pir.wait_for_motion()
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     filename = datetime.now().strftime("%Y-%m-%d_%H.%M.%S.h264")
