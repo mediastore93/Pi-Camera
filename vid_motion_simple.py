@@ -1,6 +1,6 @@
 from gpiozero import MotionSensor
 from picamera import PiCamera
-from datetime import datetime
+import datetime
 
 camera = PiCamera()
 pir = MotionSensor(17)
