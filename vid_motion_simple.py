@@ -20,11 +20,10 @@ while True:
     filename = "%s%s" % (save_dir, get_file_name())
     camera.start_preview()
     camera.start_recording(filename)
+    time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     print("Motion detected, started recording @ %s" % (time_now))
     camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     pir.wait_for_no_motion()
     camera.stop_recording()
-    time_now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    #print("Stopped recording @ %s" % (time_now))
-
+    
 
