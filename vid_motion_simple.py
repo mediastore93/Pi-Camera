@@ -2,7 +2,6 @@ from gpiozero import MotionSensor
 from picamera import PiCamera
 from datetime import datetime
 
-
 camera = PiCamera()
 pir = MotionSensor(17)
 
@@ -25,5 +24,3 @@ while True:
     camera.annotate_text = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     pir.wait_for_no_motion()
     camera.stop_recording()
-    
-
