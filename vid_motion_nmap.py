@@ -18,6 +18,9 @@ camera.framerate = 25
 
 save_dir = "/home/pi/vid/"
 
+time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print(('Scan started at %s ') % time_now)
+
 
 #VIDEO -------------------------------------------------
 def video_rec():
@@ -67,7 +70,7 @@ while True:
         print('----------------------------------------------------')
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         nm.scan(hosts='10.0.0.16', arguments='-sn')
-        print(('Scan started at %s ') % time_now)
+        #print(('Scan started at %s ') % time_now)
         for host in nm.all_hosts():
                 #print('Host : %s (%s)' % (host, nm[host].hostname()))
                 #print('State : %s' % nm[host].state())
@@ -75,10 +78,11 @@ while True:
                         count+=1
                         #print('OG is in, counted up by 1')
         if count > 0:
-                print('OG is in. Scanning again in 5 minutes')
+                #print('OG is in. Scanning again in 5 minutes')
                 time.sleep(300)
         else:
-                print('OG is out')
+                time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                print('OG is out @ %s' % (time_now))
                 time.sleep(1)
                 #print("PIR Module Holding Time Test (CTRL-C to exit)")
                 # Set pin as input
@@ -137,4 +141,3 @@ while True:
 #for i in range(36): #loop for 1 hour
 #        sweep()
 #        time.sleep(1)
-
