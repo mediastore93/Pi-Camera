@@ -5,7 +5,7 @@ import time
 import datetime
 from picamera import PiCamera
 import RPi.GPIO as GPIO
-
+from gpiozero import LED
 
 #camera settings:
 camera = PiCamera()
@@ -17,9 +17,11 @@ save_dir = "/home/pi/vid/"
 
 #motion settings:
 GPIO_PIR = 17
+led = LED(4)
+
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(4,GPIO.OUT)
-GPIO.output(4,GPIO.LOW)
+#GPIO.setup(4,GPIO.OUT)
+#GPIO.output(4,GPIO.LOW)
 
 #VIDEO -------------------------------------------------
 def video_rec():
@@ -88,35 +90,37 @@ try:
         #start_time=time.time()
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print("  Motion detected @ %s !" % time_now)
-        GPIO.output(4,GPIO.HIGH)
+        #GPIO.output(4,GPIO.HIGH)
+        led.blink()
         video_rec()
-        GPIO.output(4,GPIO.LOW)
+        #GPIO.output(4,GPIO.LOW)
     elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
     # PIR is triggered
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print("  Motion detected @ %s !" % time_now)
-        GPIO.output(4,GPIO.HIGH)
+        led.blink()
+        #GPIO.output(4,GPIO.HIGH)
         still()
-        GPIO.output(4,GPIO.LOW)
+        #GPIO.output(4,GPIO.LOW)
     elif (Current_State==1 and Previous_State==0) and (timestamp < start):
     # PIR is triggered
         time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         print("  Motion detected @ %s !" % time_now)
-        GPIO.output(4,GPIO.HIGH)
+        led.blink()
+        #GPIO.output(4,GPIO.HIGH)
         still()
-        GPIO.output(4,GPIO.LOW)
-
+        #GPIO.output(4,GPIO.LOW)
     # Record previous state
         Previous_State=1
     elif Current_State==0 and Previous_State==1:
     	# PIR has returned to ready state
     	stop_time=time.time()
     	print("  Ready ")
-    	GPIO.output(4,GPIO.LOW)
+    	#GPIO.output(4,GPIO.LOW)
     	Previous_State=0
 
 except KeyboardInterrupt:
   print("  Quit")
-  GPIO.output(4,GPIO.LOW)
+  #GPIO.output(4,GPIO.LOW)
   # Reset GPIO settings
   GPIO.cleanup()
