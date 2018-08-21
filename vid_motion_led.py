@@ -5,7 +5,7 @@ import time
 import datetime
 from picamera import PiCamera
 import RPi.GPIO as GPIO
-#import os
+
 
 #camera settings:
 camera = PiCamera()
@@ -23,7 +23,7 @@ GPIO.output(4,GPIO.LOW)
 
 #VIDEO -------------------------------------------------
 def video_rec():
-    camera.resolution = (1296, 972) 
+    camera.resolution = (1296, 972)
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     start = datetime.datetime.now()
     def get_file_name():
@@ -120,5 +120,3 @@ except KeyboardInterrupt:
   GPIO.output(4,GPIO.LOW)
   # Reset GPIO settings
   GPIO.cleanup()
-
-
