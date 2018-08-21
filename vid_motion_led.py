@@ -127,5 +127,5 @@ except KeyboardInterrupt:
   print("  Quit")
   #GPIO.output(4,GPIO.LOW)
   led.off()
-  Reset GPIO settings
+  #Reset GPIO settings
   GPIO.cleanup()
