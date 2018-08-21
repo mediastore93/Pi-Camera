@@ -23,7 +23,6 @@ GPIO.output(4,GPIO.LOW)
 
 #VIDEO -------------------------------------------------
 def video_rec():
-    #camera.resolution = (960, 540)
     camera.resolution = (1296, 972) 
     time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     start = datetime.datetime.now()
@@ -48,7 +47,7 @@ def still():
 	camera.rotation = 180
 	camera.led = False
 	camera.start_preview()
-	time.sleep(1)
+	time.sleep(0.2)
 	def get_file_name():
 		return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
 	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -56,7 +55,7 @@ def still():
 	filename = "%s%s" % (save_dir, get_file_name())
 	camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 	camera.capture(filename)
-	time.sleep(1)
+	time.sleep(0.2)
 	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
 	camera.capture(filename)
 	camera.stop_preview()
