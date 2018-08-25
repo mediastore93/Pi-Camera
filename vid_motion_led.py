@@ -45,24 +45,24 @@ def video_rec():
 
 #TAKES 2 STILL PICTURES -------------------------------------------------
 def still():
-	camera.exposure_mode = 'night'
-	camera.awb_mode = 'shade'
-	camera.resolution = (2592, 1944)
-	camera.rotation = 180
-	camera.led = False
-	camera.start_preview()
-	time.sleep(0.2)
-	def get_file_name():
-		return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
-	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-	print("Taking picture at %s" % (time_now))
-	filename = "%s%s" % (save_dir, get_file_name())
-	camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-	camera.capture(filename)
-	time.sleep(0.2)
-	time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-	camera.capture(filename)
-	camera.stop_preview()
+    camera.exposure_mode = 'night'
+    camera.awb_mode = 'shade'
+    camera.resolution = (2592, 1944)
+    camera.rotation = 180
+    camera.led = False
+    camera.start_preview()
+    time.sleep(0.2)
+    def get_file_name():
+    	return datetime.datetime.now().strftime("%Y-%m-%d_%H.%M.%S.jpg")
+    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    print("Taking picture at %s" % (time_now))
+    filename = "%s%s" % (save_dir, get_file_name())
+    camera.annotate_text = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    camera.capture(filename)
+    time.sleep(0.2)
+    time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    camera.capture(filename)
+    camera.stop_preview()
 
 #PIR ---------------------------------------------------
 print("PIR Module Holding Time Test (CTRL-C to exit)")
@@ -72,57 +72,56 @@ Previous_State = 0
 
 try:
 
-  print("Waiting for PIR to settle ...")
-  # Loop until PIR output is 0
-  while GPIO.input(GPIO_PIR)==1:
-    Current_State  = 0
-  print("  Ready")
-  # Loop until users quits with CTRL-C
-  while True :
+    print("Waiting for PIR to settle ...")
+    # Loop until PIR output is 0
+    while GPIO.input(GPIO_PIR)==1:
+        Current_State  = 0
+    print("  Ready")
+    # Loop until users quits with CTRL-C
+    while True :
     # Read PIR state
-    Current_State = GPIO.input(GPIO_PIR)
-    timestamp = datetime.datetime.now().time()
-    start = datetime.time(6, 31)
-    end = datetime.time(19, 0)
-    midnight = datetime.time(23, 59)
-    if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
+        Current_State = GPIO.input(GPIO_PIR)
+        timestamp = datetime.datetime.now().time()
+        start = datetime.time(6, 31)
+        end = datetime.time(19, 0)
+        midnight = datetime.time(23, 59)
+        if (Current_State==1 and Previous_State==0) and (start <= timestamp <= end):
     # PIR is triggered
         #start_time=time.time()
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print("  Motion detected @ %s !" % time_now)
-        #GPIO.output(4,GPIO.HIGH)
-        led.blink()
-        video_rec()
-        led.off()
-        #GPIO.output(4,GPIO.LOW)
-    elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print("  Motion detected @ %s !" % time_now)
+            #GPIO.output(4,GPIO.HIGH)
+            led.blink()
+            video_rec()
+            led.off()
+            #GPIO.output(4,GPIO.LOW)
+        elif (Current_State==1 and Previous_State==0) and (end < timestamp <= midnight):
     # PIR is triggered
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print("  Motion detected @ %s !" % time_now)
-        led.blink()
-        #GPIO.output(4,GPIO.HIGH)
-        still()
-        led.off()
-        #GPIO.output(4,GPIO.LOW)
-    elif (Current_State==1 and Previous_State==0) and (timestamp < start):
-    # PIR is triggered
-        time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print("  Motion detected @ %s !" % time_now)
-        led.blink()
-        #GPIO.output(4,GPIO.HIGH)
-        still()
-        led.off()
-        #GPIO.output(4,GPIO.LOW)
-    # Record previous state
-        Previous_State=1
-    elif Current_State==0 and Previous_State==1:
-    	# PIR has returned to ready state
-    	stop_time=time.time()
-    	print("  Ready ")
-        led.off()
-        #GPIO.output(4,GPIO.LOW)
-    	Previous_State=0
-
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print("  Motion detected @ %s !" % time_now)
+            led.blink()
+            #GPIO.output(4,GPIO.HIGH)
+            still()
+            led.off()
+            #GPIO.output(4,GPIO.LOW)
+        elif (Current_State==1 and Previous_State==0) and (timestamp < start):
+            # PIR is triggered
+            time_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print("  Motion detected @ %s !" % time_now)
+            led.blink()
+            #GPIO.output(4,GPIO.HIGH)
+            still()
+            led.off()
+            #GPIO.output(4,GPIO.LOW)
+            # Record previous state
+            Previous_State=1
+        elif Current_State==0 and Previous_State==1:
+        	# PIR has returned to ready state
+        	stop_time=time.time()
+        	print("  Ready ")
+            led.off()
+            #GPIO.output(4,GPIO.LOW)
+        	Previous_State=0
 except KeyboardInterrupt:
     print("  Quit")
     #GPIO.output(4,GPIO.LOW)
