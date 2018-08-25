@@ -124,8 +124,8 @@ try:
     	Previous_State=0
 
 except KeyboardInterrupt:
-  print("  Quit")
-  #GPIO.output(4,GPIO.LOW)
-  led.off()
-  #Reset GPIO settings
-  GPIO.cleanup()
+    print("  Quit")
+    #GPIO.output(4,GPIO.LOW)
+    led.off()
+    #Reset GPIO settings
+    GPIO.cleanup()
