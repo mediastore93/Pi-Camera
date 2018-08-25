@@ -119,7 +119,7 @@ try:
         	# PIR has returned to ready state
         	stop_time=time.time()
         	print("  Ready ")
-            led.off()
+            #led.off()
             #GPIO.output(4,GPIO.LOW)
         	Previous_State=0
 except KeyboardInterrupt:
